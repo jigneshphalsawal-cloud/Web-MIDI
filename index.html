@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web MIDI Synthesizer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Web MIDI Synthesizer</h1>
+            <div class="preset-switcher">
+                <button class="preset-btn active" data-preset="chill">Chill</button>
+                <button class="preset-btn" data-preset="cyber">Cyber</button>
+                <button class="preset-btn" data-preset="arcade">Arcade</button>
+            </div>
+        </div>
+
+        <div class="layout">
+            <div class="panel">
+                <h2>Live Visualizer</h2>
+                <div class="visualizer-container">
+                    <canvas id="visualizer"></canvas>
+                </div>
+
+                <h2 style="margin-top: 1.5rem;">Drum Triggers</h2>
+                <div class="drum-pads">
+                    <div class="drum-pad" data-key="a">A</div>
+                    <div class="drum-pad" data-key="s">S</div>
+                    <div class="drum-pad" data-key="d">D</div>
+                    <div class="drum-pad" data-key="f">F</div>
+                    <div class="drum-pad" data-key="j">J</div>
+                    <div class="drum-pad" data-key="k">K</div>
+                    <div class="drum-pad" data-key="l">L</div>
+                    <div class="drum-pad" data-key="space">Space</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Effects & Parameters</h2>
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label class="control-label">Master Volume</label>
+                        <div class="control-value" id="gainValue">70%</div>
+                        <input type="range" id="gainControl" min="0" max="100" value="70">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Filter Cutoff</label>
+                        <div class="control-value" id="filterValue">20kHz</div>
+                        <input type="range" id="filterControl" min="0" max="100" value="100">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Delay Time</label>
+                        <div class="control-value" id="delayValue">0ms</div>
+                        <input type="range" id="delayControl" min="0" max="100" value="0">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Delay Feedback</label>
+                        <div class="control-value" id="feedbackValue">0%</div>
+                        <input type="range" id="feedbackControl" min="0" max="100" value="0">
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 2rem;">Playback Controls</h2>
+                <div class="transport">
+                    <button class="btn primary" id="playBtn">Play</button>
+                    <button class="btn" id="stopBtn" disabled>Stop</button>
+                    <button class="btn" id="recordBtn">Record</button>
+                </div>
+
+                <div class="status-display">
+                    <div class="status-item">
+                        <div class="status-label">BPM</div>
+                        <div class="status-value" id="bpmDisplay">120</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">Time</div>
+                        <div class="status-value" id="timeDisplay">0:00</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">Loop State</div>
+                        <div class="status-value" id="loopState">Idle</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">Notes</div>
+                        <div class="status-value" id="noteCount">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <p><strong>Web MIDI</strong> — Browser-based beat generator using Web Audio API</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">Use keyboard keys A, S, D, F, J, K, L, or Spacebar to hit pads.</p>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" style="display: none;"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
